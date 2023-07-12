@@ -1,0 +1,21 @@
+"""Асинхронность не достигнута, 
+т.к. await просто останаливает 
+вызывающую процедуру на время 
+выполнения вызываемой"""
+import asyncio
+from util import delay
+
+async def add_one(number: int) -> int:
+    return number + 1
+
+async def hello_message() -> str:
+    await delay(1)
+    return "Hello world!"
+
+async def main() -> None:
+    message = await hello_message()
+    one_plus_one = await add_one(1)
+    print(one_plus_one)
+    print(message)
+
+asyncio.run(main())
